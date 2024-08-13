@@ -565,18 +565,6 @@ typedef NS_ENUM(NSInteger, ImagePickerClassType) { UIImagePickerClassType, PHPic
     return;
   }
   if (videoURL != nil) {
-    if (@available(iOS 13.0, *)) {
-      NSURL *destination = [FLTImagePickerPhotoAssetUtil saveVideoFromURL:videoURL];
-      if (destination == nil) {
-        [self sendCallResultWithError:[FlutterError
-                                          errorWithCode:@"flutter_image_picker_copy_video_error"
-                                                message:@"Could not cache the video file."
-                                                details:nil]];
-        return;
-      }
-
-      videoURL = destination;
-    }
     [self sendCallResultWithSavedPathList:@[ videoURL.path ]];
   } else {
     UIImage *image = info[UIImagePickerControllerEditedImage];
