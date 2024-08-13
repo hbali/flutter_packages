@@ -204,22 +204,8 @@ API_AVAILABLE(ios(14))
                                 return;
                               }
 
-                              NSURL *destination =
-                                  [FLTImagePickerPhotoAssetUtil saveVideoFromURL:videoURL];
-                              if (destination == nil) {
-                                [self
-                                    completeOperationWithPath:nil
-                                                        error:[FlutterError
-                                                                  errorWithCode:
-                                                                      @"flutter_image_picker_copy_"
-                                                                      @"video_error"
-                                                                        message:@"Could not cache "
-                                                                                @"the video file."
-                                                                        details:nil]];
-                                return;
-                              }
-
-                              [self completeOperationWithPath:[destination path] error:nil];
+                              // Directly return the original video path without copying
+                              [self completeOperationWithPath:[videoURL path] error:nil];
                             }];
 }
 
